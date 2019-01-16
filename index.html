@@ -32,7 +32,7 @@
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
-#loader:before { 
+#loader:before {
     content: "";
     position: absolute;
     top: 5px;
@@ -98,7 +98,6 @@
 		    url = window.location.href,
 		    params = {},
 		    match;
-		var vars = url.split('/landing-ayomi/') ;
 		while(match = regex.exec(url)) {
 		    params[match[1]] = match[2];
 		}		
@@ -113,38 +112,10 @@
 	        });
 
                 setTimeout(function(){
-			if ( vars.length > 1 ) {
-			
- 	var url = vars.pop(); 
-        try { 
-            var protomatch = /^\/?\/?(https?|ftp):\/\/?/;
-            url = url.replace(protomatch, '//'); 
-            var check_head = /^\/\//;       // Case : "//URL"
-            var check_head1 = /^\/[^\/]/;   // Case : "/URL"
-            
-            if ( !check_head.test(url) ) {
-                if ( check_head1.test(url) ) {
-                    url = "/" + url;
-                } else {
-                    url = "//" + url;
-                }
-            }
-        } catch(error) {
-            console.log(error)
-        }				
-				
-				
-				
-				
-				
-				
-				
-			}
-			  if (projectId === undefined || email === undefined) {
+			if (projectId === undefined || email === undefined) {
 				url = url + "r/contact/"
-			  } else {
+			} else {
 				url = url + "r/cofunding/land/"+projectId + "/?email="+email ;
-			  }
 			}
 			console.log('My Url : ' + url);
 		}, 1500);
