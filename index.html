@@ -95,31 +95,65 @@
 		<script>
 		// Parse params
 		var regex = /[?&]([^=#]+)=([^&#]*)/g,
+		    regex2 = /projec?t\/fonction\/(\d+)\//,
 		    url = window.location.href,
 		    params = {},
-		    match;
-		while(match = regex.exec(url)) {
-		    params[match[1]] = match[2];
-		}		
-		projectId = params['projectId'];
-		email = params['email'];
-
+		    match,
+		    projectIdtemp;
+		
+		
 		// Make url
-		url = 'https://a';
-                setTimeout(function(){ url = url + "yomi.f"}, 500); 
+		if ( url.split('/landing-ayomi/').length > 1 ) {
+		    url = url.split('/landing-ayomi/').pop();
+		    url = url.replace('forms.zohopublic.eu/sofianebelgadi/form/InscriptionEvnement/formperma/FSfjOlbDhIGYL_ZMK9cDm8q-LBEuLWFMpNB-SJzae0w','ayomi.fr/cofunding/event/confirmation/');
+		    var protomatch = /^\/?\/?(https?|ftp):\/\/?/;
+		    url = url.replace(protomatch, '//'); 
+		    var check_head = /^\/\//;       // Case : "//URL"
+		    var check_head1 = /^\/[^\/]/;   // Case : "/URL"
+
+		    if ( !check_head.test(url) ) {
+			if ( check_head1.test(url) ) {
+			    url = "/" + url;
+			} else {
+			    url = "//" + url;
+			}
+		    }
+		    console.log('My Url : ' + url);	
+
+		} else {
+		        while(match = regex.exec(url)) {
+			    params[match[1]] = match[2];
+			}		
+			projectId = params['projectId'];
+			email = params['email'];
+			if ( projectId === undefined ) {
+			    try { 
+			    	projectId = regex2.exec(url)[1];
+		 	        
+			    } catch(error) {
+			        console.log(error)
+			    }
+			}
+
+		        url = 'https://a';
+		        setTimeout(function(){ url = url + "yomi.f"}, 500); 
+		        setTimeout(function(){
+				if (projectId === undefined || email === undefined) {
+					url = url + "r/contact/"
+				} else {
+					url = url + "r/cofunding/land/"+projectId + "/?email="+email ;
+				}
+				console.log('My Url : ' + url);
+		        }, 1500);
+	
+		}
+		
+		
+		
+		// GO
                 window.addEventListener('DOMContentLoaded', function() {
 	       		 setTimeout(function(){ location.href = url; }, 2000);
-	        });
-
-                setTimeout(function(){
-			if (projectId === undefined || email === undefined) {
-				url = url + "r/contact/"
-			} else {
-				url = url + "r/cofunding/land/"+projectId + "/?email="+email ;
-			}
-			console.log('My Url : ' + url);
-		}, 1500);
-
+	        });			
 		</script>
 	</body>
 
