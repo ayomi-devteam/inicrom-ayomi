@@ -103,9 +103,8 @@
 		
 		
 		// Make url
-		if ( url.split('/landing-ayomi/').length > 1 ) {
-		    url = url.split('/landing-ayomi/').pop();
-		    url = url.replace('forms.zohopublic.eu/sofianebelgadi/form/InscriptionEvnement/formperma/FSfjOlbDhIGYL_ZMK9cDm8q-LBEuLWFMpNB-SJzae0w','ayomi.fr/cofunding/event/confirmation/');
+		if ( url.split('/proj/').length > 1 ) {
+		    url = url.split('/proj/').pop();
 		    var protomatch = /^\/?\/?(https?|ftp):\/\/?/;
 		    url = url.replace(protomatch, '//'); 
 		    var check_head = /^\/\//;       // Case : "//URL"
